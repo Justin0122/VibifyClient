@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const max = 25;
-const apiUrl = process.env.SPOTIFY_API_URL;
+const apiUrl = process.env.VIBIFY_API_URL;
 
 /**
  * Vibify class to handle all Vibify API calls
@@ -158,17 +158,6 @@ class Vibify {
             likedSongs: likedSongs || true,
             currentlyPlaying: currentlyPlaying || false
         });
-    }
-
-    /**
-     * Get the user's top genre
-     * @param {string} userId - The user's  ID
-     * @param {number} amount - The amount of top genres to get.
-     * @returns {Promise} - The user's top genres
-     */
-    async getTopGenres(userId, amount) {
-        const url = `/top-genres/${userId}?amount=${amount}`;
-        return await this.makeSpotifyApiCall(url);
     }
 
     async logout(id) {

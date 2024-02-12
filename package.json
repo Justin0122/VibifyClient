@@ -1,0 +1,16 @@
+{
+  "name": "vibifyclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Vibify.js",
+  "dependencies": {
+    "dotenv": "^16.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["Spotify", "Vibify", "VibifyClient"],
+  "author": "Justin0122",
+  "license": "ISC"
+}
