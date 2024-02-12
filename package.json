@@ -1,6 +1,6 @@
 {
   "name": "vibifyclient",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "Vibify.js",
   "dependencies": {
@@ -10,7 +10,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["Spotify", "Vibify", "VibifyClient"],
+  "keywords": [
+    "Spotify",
+    "Vibify",
+    "VibifyClient"
+  ],
   "author": "Justin0122",
   "license": "ISC"
 }
