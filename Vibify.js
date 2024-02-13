@@ -146,17 +146,19 @@ class Vibify {
      * @param {boolean} mostPlayed - Whether to include most played tracks.
      * @param {boolean} likedSongs - Whether to include liked songs.
      * @param {boolean} currentlyPlaying - Whether to include currently playing track.
+     * @param {boolean} useAudioFeatures - Whether to use audio features to create the playlist.
      * @returns {Promise} - The created recommendation playlist.
      */
-    async createRecommendationPlaylist(userId, genre, recentlyPlayed, mostPlayed, likedSongs, currentlyPlaying) {
+    async createRecommendationPlaylist(userId, genre, recentlyPlayed, mostPlayed, likedSongs, currentlyPlaying, useAudioFeatures) {
         const url = `/recommendations`;
         return await this.makeSpotifyApiCall(url, 'POST', {
             id: userId,
-            genre: genre,
+            genre: genre || null,
             recentlyPlayed: recentlyPlayed || false,
             mostPlayed: mostPlayed || true,
             likedSongs: likedSongs || true,
-            currentlyPlaying: currentlyPlaying || false
+            currentlyPlaying: currentlyPlaying || false,
+            useAudioFeatures: useAudioFeatures || true
         });
     }
 
