@@ -154,13 +154,13 @@ class Vibify {
         const url = `/recommendations`;
         return await this.makeSpotifyApiCall(url, 'POST', {
             id: userId,
-            genre: genre || null,
-            recentlyPlayed: recentlyPlayed || false,
-            mostPlayed: mostPlayed || true,
-            likedSongs: likedSongs || true,
-            currentlyPlaying: currentlyPlaying || false,
-            useAudioFeatures: useAudioFeatures || true,
-            targetValues: targetValues || {}
+            genre: genre !== null ? genre : null,
+            recentlyPlayed: recentlyPlayed !== null ? recentlyPlayed : false,
+            mostPlayed: mostPlayed !== null ? mostPlayed : true,
+            likedSongs: likedSongs !== null ? likedSongs : true,
+            currentlyPlaying: currentlyPlaying !== null ? currentlyPlaying : false,
+            useAudioFeatures: useAudioFeatures !== null ? useAudioFeatures : true,
+            targetValues: targetValues !== null ? targetValues : {}
         });
     }
 
