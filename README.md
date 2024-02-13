@@ -32,9 +32,16 @@ const user = await client.getUser('username');
 const topTracks = await client.getTopTracks('username');
 const topArtists = await client.getTopArtists('username');
 const createPlaylist = await client.createPlaylist('username', 'playlistName', "month", "year");
-const createRecommendationPlaylist = await client.createRecommendationPlaylist('username', 'genre', 'recentlyPlayed', 'mostPlayed', 'likedSongs', 'currentlyPlaying');
+const createRecommendationPlaylist = await client.createRecommendationPlaylist('username', 'genre', 'recentlyPlayed', 'mostPlayed', 'likedSongs', 'currentlyPlaying', 'audioFeatures');
 const getAudioFeatures = await client.getAudioFeatures('playlistId', 'userId');
 ```
+
+### Note:
+The `createRecommendationPlaylist` method accepts a `audioFeatures` parameter, which can be `true` or `false`.
+
+If `true`, the playlist is based on the user's track audio features, reducing the impact of the `genre` parameter.
+This can have unexpected results, as the playlist may not be based on the genre specified.
+
 
 ## Example
 
@@ -51,7 +58,7 @@ const client = new Vibify();
 const user = await client.getUser('user');
 console.log(user);
 
-const recommendations = await client.createRecommendationPlaylist('user', 'pop', 'true', 'true', 'true', 'true');
+const recommendations = await client.createRecommendationPlaylist('user', 'pop', 'true', 'true', 'true', 'true', 'false');
 console.log(recommendations);
 
 const audioFeatures = await client.getAudioFeatures(recommendations.id, 'user');
