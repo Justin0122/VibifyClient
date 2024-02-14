@@ -151,20 +151,20 @@ class Vibify {
      * @param {boolean} useTrackSeeds - Whether to use track seeds to create the playlist.
      * @returns {Promise} - The created recommendation playlist.
      */
-    async createRecommendationPlaylist(userId, genre, recentlyPlayed, mostPlayed, likedSongs, currentlyPlaying, useAudioFeatures, targetValues, useTrackSeeds) {
-        const url = `/recommendations`;
-        return await this.makeSpotifyApiCall(url, 'POST', {
-            id: userId,
-            genre: genre !== null ? genre : null,
-            recentlyPlayed: recentlyPlayed !== null ? recentlyPlayed : false,
-            mostPlayed: mostPlayed !== null ? mostPlayed : true,
-            likedSongs: likedSongs !== null ? likedSongs : true,
-            currentlyPlaying: currentlyPlaying !== null ? currentlyPlaying : false,
-            useAudioFeatures: useAudioFeatures !== null ? useAudioFeatures : true,
-            targetValues: targetValues !== null ? targetValues : {},
-            useTrackSeeds: useTrackSeeds !== null ? useTrackSeeds : false
-        });
-    }
+async createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedSongs = true, currentlyPlaying = false, useAudioFeatures = true, targetValues = {}, useTrackSeeds = false) {
+    const url = `/recommendations`;
+    return await this.makeSpotifyApiCall(url, 'POST', {
+        id: userId,
+        genre,
+        recentlyPlayed,
+        mostPlayed,
+        likedSongs,
+        currentlyPlaying,
+        useAudioFeatures,
+        targetValues,
+        useTrackSeeds
+    });
+}
 
     async logout(id) {
         const url = `/delete-user/${id}`;
