@@ -147,11 +147,11 @@ class Vibify {
      * @param {boolean} likedSongs - Whether to include liked songs.
      * @param {boolean} currentlyPlaying - Whether to include currently playing track.
      * @param {boolean} useAudioFeatures - Whether to use audio features to create the playlist.
-     * @param {Object} [targetValues={}] - The target values for audio features.
      * @param {boolean} useTrackSeeds - Whether to use track seeds to create the playlist.
+     * @param {Object} [targetValues={}] - The target values for audio features.
      * @returns {Promise} - The created recommendation playlist.
      */
-async createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedSongs = true, currentlyPlaying = false, useAudioFeatures = true, targetValues = {}, useTrackSeeds = false) {
+async createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedSongs = true, currentlyPlaying = false, useAudioFeatures = true, useTrackSeeds = false, targetValues = {}) {
     const url = `/recommendations`;
     return await this.makeSpotifyApiCall(url, 'POST', {
         id: userId,
@@ -161,8 +161,8 @@ async createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false,
         likedSongs,
         currentlyPlaying,
         useAudioFeatures,
-        targetValues,
-        useTrackSeeds
+        useTrackSeeds,
+        targetValues
     });
 }
 
