@@ -4,8 +4,12 @@ Vibify Client is an npm package that provides a JavaScript interface for interac
 
 ## About
 
-Vibify Client fully depends on [Vibify]("https://github.com/justin0122/vibify")
+Vibify Client fully depends on [Vibify]("https://github.com/justin0122/vibify").
 
+The Vibify API is a RESTful API that provides access to user data, top tracks, top artists, and more. It is a simple and easy-to-use API that allows you to retrieve user information, top tracks, top artists, and more from the Vibify service.
+The guide of the API can be found on the GitHub page of the project.
+
+It may soon become a public API, but for now you will need to set up your own server to use the Vibify Client.
 
 ## Installation
 
@@ -17,7 +21,7 @@ npm i @vibify/vibify
 
 ## Usage
 
-To use the Vibify Client, you will need to import the package and create a new instance of the client. You will also need to set the `VIBIFY_API_KEY` environment variable to your Vibify API key.
+To use the Vibify Client, you will need to import the package and create a new instance of the client. You will also need to set the `VIBIFY_API_URL` and `APPLICAITON_ID` environment variables to the URL of your Vibify API server and the application ID of your Vibify application.
 
 ```javascript
 const Vibify = require('@vibify/vibify');
@@ -46,7 +50,8 @@ This can have unexpected results, as the playlist may not be based on the genre 
 ## Example
 
 ```env
-VIBIFY_API_KEY=your_api_key
+VIBIFY_API_URL=http://localhost:3000
+APPLICATION_ID=your_application_id //The same as the one in the Vibify API
 ```
 
 ```javascript
