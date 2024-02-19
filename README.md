@@ -32,6 +32,7 @@ const client = new Vibify();
 You can then use the client to make various API calls to retrieve user information, top tracks, top artists, and more:
 
 ```javascript
+const authorize = await client.authorize('username');
 const user = await client.getUser('username');
 const topTracks = await client.getTopTracks('username');
 const topArtists = await client.getTopArtists('username');

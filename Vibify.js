@@ -151,23 +151,28 @@ class Vibify {
      * @param {Object} [targetValues={}] - The target values for audio features.
      * @returns {Promise} - The created recommendation playlist.
      */
-async createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedSongs = true, currentlyPlaying = false, useAudioFeatures = true, useTrackSeeds = false, targetValues = {}) {
-    const url = `/recommendations`;
-    return await this.makeSpotifyApiCall(url, 'POST', {
-        id: userId,
-        genre,
-        recentlyPlayed,
-        mostPlayed,
-        likedSongs,
-        currentlyPlaying,
-        useAudioFeatures,
-        useTrackSeeds,
-        targetValues
-    });
-}
+    async createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedSongs = true, currentlyPlaying = false, useAudioFeatures = true, useTrackSeeds = false, targetValues = {}) {
+        const url = `/recommendations`;
+        return await this.makeSpotifyApiCall(url, 'POST', {
+            id: userId,
+            genre,
+            recentlyPlayed,
+            mostPlayed,
+            likedSongs,
+            currentlyPlaying,
+            useAudioFeatures,
+            useTrackSeeds,
+            targetValues
+        });
+    }
 
     async logout(id) {
         const url = `/delete-user/${id}`;
+        return await this.makeSpotifyApiCall(url);
+    }
+
+    async authorize(id) {
+        const url = `/authorize/${id}`;
         return await this.makeSpotifyApiCall(url);
     }
 }
