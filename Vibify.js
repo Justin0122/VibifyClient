@@ -149,9 +149,10 @@ class Vibify {
      * @param {boolean} useAudioFeatures - Whether to use audio features to create the playlist.
      * @param {boolean} useTrackSeeds - Whether to use track seeds to create the playlist.
      * @param {Object} [targetValues={}] - The target values for audio features.
+     * @param {number} [amount=25] - The amount of tracks to retrieve. Default is the value of the constant 'max'.
      * @returns {Promise} - The created recommendation playlist.
      */
-    async createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedSongs = true, currentlyPlaying = false, useAudioFeatures = true, useTrackSeeds = false, targetValues = {}) {
+    async createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedSongs = true, currentlyPlaying = false, useAudioFeatures = true, useTrackSeeds = false, targetValues = {}, amount = max) {
         const url = `/recommendations`;
         return await this.makeSpotifyApiCall(url, 'POST', {
             id: userId,
@@ -162,7 +163,8 @@ class Vibify {
             currentlyPlaying,
             useAudioFeatures,
             useTrackSeeds,
-            targetValues
+            targetValues,
+            amount: amount
         });
     }
 
