@@ -37,7 +37,7 @@ const user = await client.getUser('username');
 const topTracks = await client.getTopTracks('username');
 const topArtists = await client.getTopArtists('username');
 const createPlaylist = await client.createPlaylist('username', 'playlistName', "month", "year");
-const createRecommendationPlaylist = await client.createRecommendationPlaylist('username', 'genre', 'recentlyPlayed', 'mostPlayed', 'likedSongs', 'currentlyPlaying', 'audioFeatures');
+const createRecommendationPlaylist = await client.createRecommendationPlaylist('username', 'genre', 'recentlyPlayed', 'mostPlayed', 'likedTracks', 'currentlyPlaying', 'audioFeatures');
 const getAudioFeatures = await client.getAudioFeatures('playlistId', 'userId');
 ```
 

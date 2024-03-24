@@ -27,19 +27,19 @@ class Vibify {
 
     getTopArtists = (userId, amount = 25) => this.makeApiCall(`/top-artists/${userId}?amount=${amount}`);
 
-    getLastLikedSongs = (userId, amount = 25) => this.makeApiCall(`/liked-songs/${userId}?amount=${amount}`);
+    getLastLikedTracks = (userId, amount = 25) => this.makeApiCall(`/last-liked/${userId}?amount=${amount}`);
 
     getPlaylists = (userId, amount = 25, offset = 0) => this.makeApiCall(`/playlists/${userId}?amount=${amount}&offset=${offset}`);
 
     getAudioFeatures = (playlistId, userId) => this.makeApiCall(`/audio-features/${playlistId}/${userId}`);
 
-    createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedSongs = true, currentlyPlaying = false, useAudioFeatures = true, useTrackSeeds = false, targetValues = {}, amount = max) {
+    createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedTracks = true, currentlyPlaying = false, useAudioFeatures = true, useTrackSeeds = false, targetValues = {}, amount = max) {
         const body = {
             id: userId,
             genre: genre,
             recentlyPlayed: recentlyPlayed,
             mostPlayed: mostPlayed,
-            likedSongs: likedSongs,
+            likedTracks: likedTracks,
             currentlyPlaying: currentlyPlaying,
             useAudioFeatures: useAudioFeatures,
             useTrackSeeds: useTrackSeeds,
