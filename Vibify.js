@@ -59,7 +59,14 @@ class Vibify {
         };
         console.log(body);
         return this.makeApiCall('/create-playlist', 'POST', body);
+    }
 
+    filterLikedTracks(userId, filter) {
+        const body = {
+            id: userId,
+            filter: filter
+        };
+        return this.makeApiCall('/filter-liked-tracks', 'POST', body);
     }
 
     logout = (id) => this.makeApiCall('/delete-user/${id}');
