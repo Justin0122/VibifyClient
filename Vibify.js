@@ -14,7 +14,7 @@ class Vibify {
         }
         const response = await fetch(this.apiUrl + url, options);
         const text = await response.text();
-        return JSON.parse(text);
+        return { status: response.status, body: JSON.parse(text) };
     }
 
     getUser = (userId) => this.makeApiCall(`/user/${userId}`);
@@ -57,7 +57,6 @@ class Vibify {
             playlistName: playlistName,
             genre: genre
         };
-        console.log(body);
         return this.makeApiCall('/create-playlist', 'POST', body);
     }
 
