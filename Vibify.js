@@ -1,6 +1,6 @@
-const dotenv = require('dotenv');
-const max = 25;
+import dotenv from 'dotenv';
 dotenv.config();
+const max = 25;
 
 class Vibify {
     apiUrl = process.env.VIBIFY_API_URL;
@@ -68,8 +68,8 @@ class Vibify {
         return this.makeApiCall('/filter-liked-tracks', 'POST', body);
     }
 
-    logout = (id) => this.makeApiCall('/delete-user/${id}');
-    authorize = (id) => this.makeApiCall('/authorize/${id}');
+    logout = (id) => this.makeApiCall(`/delete-user/${id}`);
+    authorize = (id) => this.makeApiCall(`/authorize/${id}`);
 }
 
-module.exports = Vibify;
+export default Vibify;

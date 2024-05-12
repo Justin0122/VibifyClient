@@ -24,7 +24,7 @@ npm i @vibify/vibify
 To use the Vibify Client, you will need to import the package and create a new instance of the client. You will also need to set the `VIBIFY_API_URL` and `APPLICAITON_ID` environment variables to the URL of your Vibify API server and the application ID of your Vibify application.
 
 ```javascript
-const Vibify = require('@vibify/vibify');
+import Vibify from '@vibify/vibify'
 
 const client = new Vibify();
 ```
@@ -56,8 +56,9 @@ APPLICATION_ID=your_application_id //The same as the one in the Vibify API
 ```
 
 ```javascript
-require('dotenv').config();
-const Vibify = require('@vibify/vibify');
+import Vibify from '@vibify/vibify'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const client = new Vibify();
 
