@@ -60,10 +60,11 @@ class Vibify {
         return this.makeApiCall('/create-playlist', 'POST', body);
     }
 
-    filterLikedTracks(userId, filter) {
+    filterLikedTracks(userId, filter, playlistName) {
         const body = {
             id: userId,
-            filter: filter
+            filter: filter,
+            playlistName: playlistName
         };
         return this.makeApiCall('/filter-liked-tracks', 'POST', body);
     }
