@@ -25,8 +25,10 @@ To use the Vibify Client, you will need to import the package and create a new i
 
 ```javascript
 import Vibify from '@vibify/vibify'
+import dotenv from 'dotenv'
+dotenv.config()
 
-const client = new Vibify();
+const client = new Vibify(process.env.VIBIFY_API_URL, process.env.APPLICATION_ID);
 ```
 
 You can then use the client to make various API calls to retrieve user information, top tracks, top artists, and more:
@@ -60,13 +62,13 @@ import Vibify from '@vibify/vibify'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const client = new Vibify();
+const client = new Vibify(process.env.VIBIFY_API_URL, process.env.APPLICATION_ID);
 
 const user = await client.getUser('user');
-console.log(user);
+console.log(user.body);
 
 const recommendations = await client.createRecommendationPlaylist('user', 'pop', 'true', 'true', 'true', 'true', 'false');
-console.log(recommendations);
+console.log(recommendations.body);
 
 const audioFeatures = await client.getAudioFeatures(recommendations.id, 'user');
 
