@@ -1,33 +1,35 @@
-import dotenv from 'dotenv';
-dotenv.config();
 const max = 25;
 
 class Vibify {
-    apiUrl = process.env.VIBIFY_API_URL;
+
+    constructor(url, token) {
+        this.apiUrl = url;
+        this.apiToken = token;
+    }
 
     async makeApiCall(url, method = "GET", body = {}) {
-        const headers = { 'x-application-id': process.env.APPLICATION_ID };
-        const options = { method, headers };
+        const headers = {'x-application-id': this.apiToken};
+        const options = {method, headers};
         if (method === 'POST' || method === 'PUT') {
             headers['Content-Type'] = 'application/json';
             options.body = JSON.stringify(body);
         }
         const response = await fetch(this.apiUrl + url, options);
         const text = await response.text();
-        return { status: response.status, body: JSON.parse(text) };
+        return {status: response.status, body: JSON.parse(text)};
     }
 
     getUser = (userId) => this.makeApiCall(`/user/${userId}`);
 
     getCurrentlyPlaying = (userId) => this.makeApiCall(`/currently-playing/${userId}`);
 
-    getTopTracks = (userId, amount = 25) => this.makeApiCall(`/top-tracks/${userId}?amount=${amount}`);
+    getTopTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/top-tracks/${userId}?amount=${amount}&offset=${offset}`);
 
-    getLastListenedTracks = (userId, amount = 25) => this.makeApiCall(`/last-listened/${userId}?amount=${amount}`);
+    getLastListenedTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/last-listened/${userId}?amount=${amount}&offset=${offset}`);
 
-    getTopArtists = (userId, amount = 25) => this.makeApiCall(`/top-artists/${userId}?amount=${amount}`);
+    getTopArtists = (userId, amount = 25, offset = 0) => this.makeApiCall(`/top-artists/${userId}?amount=${amount}&offset=${offset}`);
 
-    getLastLikedTracks = (userId, amount = 25) => this.makeApiCall(`/last-liked/${userId}?amount=${amount}`);
+    getLastLikedTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/last-liked/${userId}?amount=${amount}&offset=${offset}`);
 
     getPlaylists = (userId, amount = 25, offset = 0) => this.makeApiCall(`/playlists/${userId}?amount=${amount}&offset=${offset}`);
 
