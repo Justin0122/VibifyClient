@@ -2,13 +2,23 @@ const max = 25;
 
 class Vibify {
 
-    constructor(url, token) {
+    constructor(url, apiToken = null, userToken = undefined) {
+        if (!apiToken && !userToken) {
+            throw new Error('Either apiToken or userToken must be set');
+        }
         this.apiUrl = url;
-        this.apiToken = token;
+        this.apiToken = apiToken;
+        this.userToken = userToken;
     }
 
     async makeApiCall(url, method = "GET", body = {}) {
-        const headers = {'x-application-id': this.apiToken};
+        const headers = {};
+        if (this.apiToken) {
+            headers['x-application-id'] = this.apiToken;
+        }
+        if (this.userToken) {
+            headers['x-api-key'] = this.userToken;
+        }
         const options = {method, headers};
         if (method === 'POST' || method === 'PUT') {
             headers['Content-Type'] = 'application/json';
@@ -16,7 +26,12 @@ class Vibify {
         }
         const response = await fetch(this.apiUrl + url, options);
         const text = await response.text();
-        return {status: response.status, body: JSON.parse(text)};
+        try {
+            return {status: response.status, body: JSON.parse(text)};
+        } catch (error) {
+            // If it's not JSON, return the text directly
+            return {status: response.status, body: text};
+        }
     }
 
     getUser = (userId) => this.makeApiCall(`/user/${userId}`);
