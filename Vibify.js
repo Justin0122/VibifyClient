@@ -38,43 +38,18 @@ class Vibify {
 
     getCurrentlyPlaying = (userId) => this.makeApiCall(`/currently-playing/${userId}`);
 
-    getTopTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/top-tracks/${userId}?amount=${amount}&offset=${offset}`);
+    getTopTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/top/tracks/${userId}?limit=${amount}&offset=${offset}`);
 
-    getLastListenedTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/last-listened/${userId}?amount=${amount}&offset=${offset}`);
+    getLastListenedTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/recently-played/${userId}?limit=${amount}&offset=${offset}`);
 
-    getTopArtists = (userId, amount = 25, offset = 0) => this.makeApiCall(`/top-artists/${userId}?amount=${amount}&offset=${offset}`);
+    getTopArtists = (userId, amount = 25, offset = 0) => this.makeApiCall(`/top/artists/${userId}?limit=${amount}&offset=${offset}`);
 
-    getLastLikedTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/last-liked/${userId}?amount=${amount}&offset=${offset}`);
+    getLastLikedTracks = (userId, amount = 25, offset = 0) => this.makeApiCall(`/liked/tracks/${userId}?limit=${amount}&offset=${offset}`);
 
-    getPlaylists = (userId, amount = 25, offset = 0) => this.makeApiCall(`/playlists/${userId}?amount=${amount}&offset=${offset}`);
-
-    getAudioFeatures = (playlistId, userId) => this.makeApiCall(`/audio-features/${playlistId}/${userId}`);
-
-    createRecommendationPlaylist(userId, genre = null, recentlyPlayed = false, mostPlayed = true, likedTracks = true, currentlyPlaying = false, useAudioFeatures = true, useTrackSeeds = false, targetValues = {}, amount = max) {
-        const body = {
-            id: userId,
-            genre: genre,
-            recentlyPlayed: recentlyPlayed,
-            mostPlayed: mostPlayed,
-            likedTracks: likedTracks,
-            currentlyPlaying: currentlyPlaying,
-            useAudioFeatures: useAudioFeatures,
-            useTrackSeeds: useTrackSeeds,
-            targetValues: targetValues,
-            amount: amount
-        };
-        return this.makeApiCall('/recommendations', 'POST', body);
-    }
+    getPlaylists = (userId, amount = 25, offset = 0) => this.makeApiCall(`/playlists/${userId}?limit=${amount}&offset=${offset}`);
 
     createPlaylist(userId, playlistName, month, year, genre = undefined) {
-        const body = {
-            id: userId,
-            month: month,
-            year: year,
-            playlistName: playlistName,
-            genre: genre
-        };
-        return this.makeApiCall('/create-playlist', 'POST', body);
+        return this.makeApiCall(`/playlist/create/${userId}?name=${playlistName}&month=${month}&year=${year}${genre ? `&genre=${genre}` : ''}`);
     }
 
     filterLikedTracks(userId, filter, playlistName) {
